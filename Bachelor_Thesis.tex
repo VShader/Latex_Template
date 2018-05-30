@@ -1,0 +1,101 @@
+\documentclass[11pt,
+               a4paper,
+               titlepage,
+               open=right]{scrbook}
+               
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{subfiles}
+
+
+% ----graphic and colour----
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+
+
+\graphicspath{ {./pictures/} }
+
+
+
+\usepackage[autostyle]{csquotes}
+\usepackage{icomma}
+\usepackage{lmodern}
+
+% define page layout things like margin, header and footer
+\usepackage[inner=35mm,
+            outer=25mm,
+            top=20mm,
+            bottom=25mm,
+            headsep=1em,
+            headheight=1.5em,
+            includehead,
+            footskip=3em,
+            includefoot]{geometry}
+
+% change normal text style to 1.5 lineheight and remove paragraph indent
+\usepackage[onehalfspacing]{setspace}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+
+% fix widows (Hurenkinder) and orphans (Schusterjungen)
+\usepackage[defaultlines=2,all]{nowidow}
+
+
+% graphics, tikz and some libraries
+\usepackage{graphicx}
+
+
+% links
+\usepackage[colorlinks,
+            linkcolor=black,
+            urlcolor=black,
+            citecolor=black,
+            breaklinks=true]{hyperref}
+            
+            % bibliography, acronyms
+\usepackage{acronym}
+\usepackage[backend=biber]{biblatex} % style=alphadin
+\bibliography{myBib}
+
+
+
+
+% counters for page numbers
+\newcounter{romanpage}
+\setcounter{romanpage}{1}
+\newcounter{arabicpage}
+\setcounter{arabicpage}{1}
+
+
+\author{Maria Musterfrau}
+\title{Die Schönheit von Latex: \\
+		Praktische Anwendung}
+
+\makeindex
+
+\begin{document}
+	\maketitle
+    \tableofcontents
+	
+	\chapter{Einführung}
+	\subfile{chapters/Chapter_1}
+
+	\chapter{Hauptteil}
+	\subfile{chapters/Chapter_2}
+
+
+	\cleardoublepage
+	\setcounter{arabicpage}{\arabic{page}}
+	% bibliography
+	\printbibliography
+   	\pagenumbering{roman}\setcounter{page}{\arabic{romanpage}}
+    \cleardoublepage
+
+    % appendix
+    \appendix
+    \cleardoublepage
+    \setcounter{romanpage}{\arabic{page}}
+
+
+\end{document}
